@@ -1,0 +1,86 @@
+﻿
+@model HolyQuran_WebProject.Models.Learner
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Fileupload";
+}
+
+<h4>Upload Video </h4>
+<script>
+ $(document).ready(function () {
+             $("#FileTypeSelector").change(function () {
+                 var TId = $("#FileTypeSelector").val();
+                 
+                 $("#categorySelector option").remove();
+
+
+                 $.getJSON("/Useraccount/getCategories?typeId=" + TId, function (categories) {
+                     $("#categorySelector").append('<option>-Select Category-</option>');
+                     $.each(JSON.parse(categories), function (i, cat) {
+                         $("#categorySelector").append('<option value=' + cat.CatId + '>' + cat.Name + '</option>');
+                         //alert('Id = ' + item.Id + " Name = " + item.Name);
+                     });
+
+                 });
+
+             });
+
+ });
+ 
+    
+</script> 
+
+
+
+   
+Select Type <select id="FileTypeSelector">
+    <option value="0">--Select Type--</option>
+    <option value="1">Audio</option>
+    <option value="2">Video</option>
+    <option value="3">Images</option>
+
+</select>
+
+SelectCategory <select id="categorySelector">
+   <option>--Select Category--</option>
+   @* <option value="2">Hypocricy</option>
+    <option value="3">Salah</option>
+    <option value="3">Truth</option>
+    <option value="4">Backbiting</option>
+    <option value="5">Five Pillars of Islam</option>*@
+
+    
+
+</select>
+@*<Button id="btn" value="Save File Info" class="btn btn-success" style="background:green" ></Button>
+    <script>
+        var t = $("#FileTypeSelector").val();
+        var c =  $("#categorySelector").val();
+        $(document).ready(function () {
+            $("#btn").on('click', function () {
+
+                $.post("/Useraccount/fileData?typeId=" + t + "&catId=" + c,
+                function () {
+                    alert("Saved");
+                });
+
+            });
+        });
+            
+        
+    </script>*@
+    
+
+    
+
+<form method ="post" action="/Useraccount/Filesave/@Model.Id"  enctype="multipart/form-data">
+    
+    <input type="file" name="video"  class="btn btn-primary"/><br />
+    <input type ="submit" value="Upload" class="btn btn-success" style="background:green"/>
+
+</form>
+

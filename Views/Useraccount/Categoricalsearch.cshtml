@@ -1,0 +1,91 @@
+﻿
+@model HolyQuran_WebProject.Models.Learner
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+}
+
+@{
+    ViewBag.Title = "Categoricalsearch";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>@Session["LearnerName"]</title>
+       @Scripts.Render("~/bundles/jquery")     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#FileTypeSelector").change(function () {
+                 var TId = $("#FileTypeSelector").val();
+                 
+                 $("#categorySelector option").remove();
+
+
+                 $.getJSON("/Useraccount/getCategories?typeId=" + TId, function (categories) {
+                     $("#categorySelector").append('<option>-Select Category-</option>');
+                     $.each(JSON.parse(categories), function (i, cat) {
+                         $("#categorySelector").append('<option value=' + cat.CatId + '>' + cat.Name + '</option>');
+                         //alert('Id = ' + item.Id + " Name = " + item.Name);
+                     });
+
+                 });
+
+             });
+
+         });
+</script> 
+    @*<script>
+         $(document).ready(function () {
+             $("#FileTypeSelector").on('change', function () {
+
+                 var id = $("#FileTypeSelector").val();
+                 alert(id);
+
+                 $.getJSON("/Useraccount/getCategories?typeId=" + id, function (category) {
+                     alert("Aroosa");
+                     $("#categorySelector").append('<option>-Select City-</option>');
+                     $.each(category, function (i, cat) {
+                         $("#categorySelector").append('<option value=' + cat.CatId + '>' + cat.Name + '</option>');
+
+                     });
+
+                 });
+
+             });
+
+         });
+
+ </script>*@   
+
+
+</head>
+    <body>
+        <h2>Categoricalsearch</h2>
+
+           
+Select Type <select id="FileTypeSelector">
+    <option value="0">--Select Type--</option>
+    <option value="1">Audio</option>
+    <option value="2">Video</option>
+    <option value="3">Images</option>
+
+</select>
+
+SelectCategory <select id="categorySelector">
+   <option>--Select Category--</option>
+   @* <option value="2">Hypocricy</option>
+    <option value="3">Salah</option>
+    <option value="3">Truth</option>
+    <option value="4">Backbiting</option>
+    <option value="5">Five Pillars of Islam</option>*@
+
+
+</select>
+
+
+    </body>
+
+</html>
+

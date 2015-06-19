@@ -1,0 +1,83 @@
+﻿
+
+@model HolyQuran_WebProject.Models.Admin
+@{
+    ViewBag.Title = "SignIn";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <title>Sign In</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body style="background-image:url(/Content/Quran_Picx/bg_image.jpg)">
+        
+        <h2>Admin Portal</h2>
+        
+ <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color:white;font-style:italic  ;font-size:40px ; ">Holy Quran<small style="font-style:normal ; font-size:30px" >.com</small></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               @* <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    
+                </ul>*@
+                @*<div style="float:right ; position:relative" >
+                    
+                    <text style="color:white">New here ?</text> 
+                    <a class="btn btn-default" href="/Signup/IndexSignup" role="button">Sign Up</a>
+                    </div>*@
+            </div>
+            <!-- /.navbar-collapse -->
+
+            
+        </div>
+        <!-- /.container -->
+
+      
+    </nav>
+  
+       
+
+
+    <form method="post" action="/AdminSignIn/SignInConfirm/@Model" align="center" style="margin-bottom:200px ; margin-top:200px "  >
+       @Html.TextBoxFor(m => m.Name, new {placeholder="Enter Name" }) <br /><br />
+       @* <input type="text" placeholder="Enter name" name="n"/><br /><br />*@
+        @Html.PasswordFor(m => m.Password, new { placeholder = "Enter Password" })
+        @*<input type="text" placeholder="Enter Password" name="p" />*@ <br /><br />
+        <input type="submit" value="Sign In" />
+    </form>
+     
+
+
+<!-- jQuery -->
+    <script src="/Scripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/bootstrap.min.js"></script>
+
+<!-- jQuery -->
+    <script src="/Scripts/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/bootstrap.min.js"></script>
+        </body>
+    </html>

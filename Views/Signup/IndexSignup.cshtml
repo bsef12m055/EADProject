@@ -1,0 +1,113 @@
+﻿
+
+@{
+    ViewBag.Title = "IndexSignup";
+}
+
+<h2>IndexSignup</h2>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sign up</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+    <body style="background-image:url(/Content/Quran_Picx/bg_image.jpg)">
+
+
+        
+ <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color:white;font-style:italic  ;font-size:40px ; ">Holy Quran<small style="font-style:normal ; font-size:30px" >.com</small></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://www.facebook.com/aroosa.shakil">Contact</a>
+                    </li>
+
+                    
+                </ul>
+               
+            <!-- /.navbar-collapse -->
+
+            
+        </div>
+        <!-- /.container -->
+
+      </div>
+    </nav>
+  
+@*<div class="well"  style="background-image:url(/Content/Quran_Picx/bg_image.jpg) ; margin-top:200px ; margin-bottom:200px" >*@
+
+    <form method="post" action="/SignUp/SignUpConfirm" align="center" style="margin-top:200px ; margin-bottom:200px"">
+        <input type="text" placeholder="Enter name" name="l.Name" id="textfield" /><br /><br />
+        
+        <input type="password" placeholder="Enter Password" name="l.Password" /> <br /><br />
+        <input type="submit" value="Sign Up" name="Sign Up" id="subBtn" style="background-color:beige "/>
+    </form>
+
+        
+     
+@*</div>*@
+
+        
+    <script src="/Scripts/jquery-2.1.4.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btn').prop('disabled', true);
+            $("#textfield").on('change', function () {
+                alert($("#textfield").val());
+                $.getJSON('/Signup/checkUserName?name=' + $("#textfield").val(), function (x) {
+                    if (x == true)
+                    { alert("User Exists!!");
+                    $("#textfield").val(" ");
+                    $("#textfield").attr("placeholder", "Enter name");
+                    }
+                        
+                    while (!($("#textfield").val() || $("#textfield").val()))
+                    {
+                        $('button').prop('disabled', true);
+                    }
+                    $('button').prop('disabled', false);
+                    
+                });
+            });
+
+            if ($('input[type="password"]').val() != ' ')
+            {
+                $('input[type="submit"]').removeAttr('disabled');
+
+            }
+        });
+       
+</script>
+        
+        
+        
+@*<!-- jQuery -->
+    <script src="/Scripts/jquery.js"></script>*@
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/bootstrap.min.js"></script>
+        </body>
+    </html>
